@@ -1,0 +1,12 @@
+[dev]
+ubuntu1
+
+[qa]
+ubuntu2
+
+[db]
+ubuntu1
+ubuntu2
+
+[thaj]
+thaj1

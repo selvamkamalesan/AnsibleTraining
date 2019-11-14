@@ -1,0 +1,13 @@
+  - name: This playbook will install, configure and deploy web pages into nginx
+    hosts: app_servers
+    become: yes
+    vars_files:
+      - nginx-vars.yml
+    
+    tasks:
+      - include: install-nginx-ubuntu.yml
+      - include: install-nginx-centos.yml
+      - include: configure-nginx-ubuntu.yml
+      - include: configure-nginx-centos.yml
+      - include: common-nginx.yml
+

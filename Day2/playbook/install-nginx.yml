@@ -1,0 +1,11 @@
+- name: this play book will install configure and deploy
+  hosts: all
+  become: yes
+  tasks:
+    - name: ping the containers
+      ping:
+    - name: install nginx
+      apt: name=nginx state=latest update-cache=yes
+    - name: start nginx service
+      #service: name=nginx state=started enabled=yes
+      command: service nginx start

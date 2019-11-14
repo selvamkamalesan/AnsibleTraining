@@ -1,0 +1,11 @@
+- name: Install extra packages for Entprise Linux in centos
+  yum: name=epel-release state=latest
+  when: ( ansible_distribution == "CentOS" and ansible_os_family == "RedHat" )
+
+- name: Enable baseurl and disable mirror link in the epel repos under CentOS
+  copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
+  when: ( ansible_distribution == "CentOS" and ansible_os_family == "RedHat" )
+
+- name: Install nginx web server in centOs 
+  yum: name=nginx state=latest 
+  when: ( ansible_distribution == "CentOS" and ansible_os_family == "RedHat" )

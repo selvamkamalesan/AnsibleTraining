@@ -1,0 +1,26 @@
+- name: This playbook will provision container
+  hosts: localhost # machine where ansible is going to create containers. This case localhost
+  tasks:
+    - name: Remove the running containers 
+      shell: docker rm -f $(docker ps -qa)
+      ignore_errors: yes # This line will ignore any errors if no running containers
+      
+    - name: Create 4 Ubuntu Conainers
+      docker_container: 
+          name : "ubuntu{{item}}"  # {{item}} is a build-in variable
+          image: boa/ubuntu-ansible
+          state: started
+          ports:
+            - "800{{item}}:80"
+            - "200{{item}}:22"
+        # This is a for loop in ansbile playbook          
+      with_sequence: start=1 end=4 
+    - name: Create 4 CentOS Conainers 
+      docker_container: 
+          name : "centos{{item}}"
+          image: boa/centos-ansbile
+          state: started
+          ports:
+            - "900{{item}}:80"
+            - "300{{item}}:22"
+      with_sequence: start=1 end=4

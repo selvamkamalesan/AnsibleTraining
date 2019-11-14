@@ -1,0 +1,6 @@
+- name: this play book will ping docker containers
+  hosts: all
+  tasks:
+    - name: ping the containers
+      ping:
+    
